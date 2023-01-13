@@ -26,10 +26,14 @@ const createOgpImage = async (title: string) => {
 const getHTML = (text: string) => {
   return `<!DOCTYPE html>
   <html>
-  <meta charset="utf-8">
-  <title>Generated Image</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
+  <head>
+    <meta charset="utf-8">
+    <title>Generated Image</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        background-image: url('https://placehold.jp/ff4013/ffffff/1200x630.png');
+      }
       .container {
           position: relative;
       }
@@ -44,13 +48,11 @@ const getHTML = (text: string) => {
           width: 1200px;
           height: 630px;
       }
-  </style>
+    </style>
+  <head>
   <body>
       <div class="container">
           <div class="center">${text}!!!!</div>
-          <p>
-          <img id='bg-img' width='300' src='https://placehold.jp/ff4013/ffffff/1200x630.png' />
-          </p>
       </div>
   </body>
   </html>
