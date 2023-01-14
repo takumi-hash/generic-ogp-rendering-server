@@ -62,8 +62,6 @@ This code sameple proposes the implementation of how to dynamically generate OGP
     - This must be unique in the entire service.
   - `uniqueKey` specifies a unique user.
     - This must be unique in the specified project.
-  - `data` contains concrete data of the uniqueKey.
-    - This must be encoded url parameters.
 
 ### OGP Generation and Response
 
