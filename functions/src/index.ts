@@ -1,16 +1,27 @@
 import * as functions from "firebase-functions";
+// The Firebase Admin SDK to access Firestore.
+import * as admin from "firebase-admin";
 import core from "puppeteer-core";
 import chrome from "chrome-aws-lambda";
 
+admin.initializeApp();
+
 export const onRequest = functions
   .runWith({
-    timeoutSeconds: 300,
+    timeoutSeconds: 30,
     memory: "8GB",
   })
   .https.onRequest(async (req, res) => {
     try {
-      const title = decodeURI(req.path.slice(1));
-      const img = await createOgpImage(title);
+      // const title = req.query.title as string;
+      const projectKey = req.query.projectKey as string;
+      const uniqueKey = req.query.uniqueKey as string;
+
+      const ref = admin.firestore().collection(projectKey).doc(uniqueKey);
+      const doc = await ref.get();
+
+      let result: string = doc.get("score");
+      const img = await createOgpImage(result);
       res.type("png").status(200).send(img);
     } catch (error) {
       res.sendStatus(500);
@@ -61,8 +72,8 @@ const getHTML = (text: string) => {
   </head>
   <body>
     <div class="container">
+      <div class="contents lead">あなたのスコアは......</div>
       <div class="contents title">${text}!!!!</div>
-      <div class="contents lead">${text}!!!!</div>
     </div>
   </body>
 </html>
