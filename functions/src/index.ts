@@ -25,38 +25,47 @@ const createOgpImage = async (title: string) => {
 
 const getHTML = (text: string) => {
   return `
-  <!DOCTYPE html>
-  <html>
+<!DOCTYPE html>
+<html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Generated Image</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       body {
-        background-image: url('https://placehold.jp/ff4013/ffffff/1200x630.png');
+        height: 630px;
+        width: 1200px;
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/generic-ogp-server.appspot.com/o/sample_background.webp?alt=media&token=90d82032-cd0a-465f-81fa-bd131ec3b2a6");
+        background-size: 1200px 630px;
+        background-repeat: no-repeat;
+        margin: 0;
       }
       .container {
-          position: relative;
+        margin: 95px 100px;
+        padding: 16px;
+        height: 440px;
+        width: 1000px;
       }
-      .center {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 30px;
+      .contents {
+        margin: 32px;
       }
-      #bg-img {
-          width: 1200px;
-          height: 630px;
+      .title {
+        font-size: 50px;
+        font-weight: bold;
+      }
+      .lead {
+        font-size: 30px;
+        font-weight: normal;
       }
     </style>
-  <head>
+  </head>
   <body>
-      <div class="container">
-          <div class="center">${text}!!!!</div>
-      </div>
+    <div class="container">
+      <div class="contents title">${text}!!!!</div>
+      <div class="contents lead">${text}!!!!</div>
+    </div>
   </body>
-  </html>
+</html>
   `;
 };
 
