@@ -1,4 +1,4 @@
-# Universal Dynamic OGP
+# Generic OGP Server
 
 # Example
 
