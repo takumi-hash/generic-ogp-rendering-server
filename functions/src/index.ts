@@ -24,7 +24,8 @@ const createOgpImage = async (title: string) => {
 };
 
 const getHTML = (text: string) => {
-  return `<!DOCTYPE html>
+  return `
+  <!DOCTYPE html>
   <html>
   <head>
     <meta charset="utf-8">
