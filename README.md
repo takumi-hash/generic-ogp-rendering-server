@@ -1,4 +1,4 @@
-# Generic OGP Server
+# Generic OGP Rendering Server
 
 ## Example
 
