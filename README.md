@@ -1,6 +1,6 @@
 # Generic OGP Server
 
-# Example
+## Example
 
 Let's say, you want to display a OGP image generated dynamicaly depending on the user's UUID.
 You want to write a `og:image` like this.
@@ -24,8 +24,9 @@ You want to write a `og:image` like this.
 
 This code sameple proposes the implementation of how to dynamically generate OGP images depending on a recived request.
 
-# Smaple
+## Sample
 
+```
 <html prefix="og: https://ogp.me/ns#">
     <head>
         <title>Quiz Page - My Result</title>
@@ -37,15 +38,24 @@ This code sameple proposes the implementation of how to dynamically generate OGP
     </head>
 ...
 </html>
+```
 
-## Sample og:image URLs
+### Sample og:image URLs
 
-- `https://us-central1-generic-ogp-server.cloudfunctions.net/onRequest?projectKey=sample_campaign&uniqueKey=2nMfx7aakVmDgSX5eQVO`
-- `https://us-central1-generic-ogp-server.cloudfunctions.net/onRequest?projectKey=sample_campaign&uniqueKey=8Fa2okzpt7BLJn8SnKmc`
+- [https://us-central1-generic-ogp-server.cloudfunctions.net/onRequest?projectKey=sample_campaign&uniqueKey=2nMfx7aakVmDgSX5eQVO](https://us-central1-generic-ogp-server.cloudfunctions.net/onRequest?projectKey=sample_campaign&uniqueKey=2nMfx7aakVmDgSX5eQVO)
+- [https://us-central1-generic-ogp-server.cloudfunctions.net/onRequest?projectKey=sample_campaign&uniqueKey=8Fa2okzpt7BLJn8SnKmc](https://us-central1-generic-ogp-server.cloudfunctions.net/onRequest?projectKey=sample_campaign&uniqueKey=8Fa2okzpt7BLJn8SnKmc)
 
-# Concept
+## Concept
 
-## Save Record Request (Unqiue Web Page → firebase)
+### Save Record Request (Unqiue Web Page → firebase)
+
+- Front-end is expected to send a request of `projectKey`, `uniqueKey`, `data` to a certain request url.
+  - `projectKey` specifies which project to refer to.
+    - This must be unique in the entire service.
+  - `uniqueKey` specifies a unique user.
+    - This must be unique in the specified project.
+
+### Get OGP Request (front-end (i.e. Twitter, Facebook...) → firebase)
 
 - Front-end is expected to send a request of `projectKey`, `uniqueKey`, `data` to a certain request url.
   - `projectKey` specifies which project to refer to.
@@ -55,17 +65,7 @@ This code sameple proposes the implementation of how to dynamically generate OGP
   - `data` contains concrete data of the uniqueKey.
     - This must be encoded url parameters.
 
-## Get OGP Request (front-end (i.e. Twitter, Facebook...) → firebase)
-
-- Front-end is expected to send a request of `projectKey`, `uniqueKey`, `data` to a certain request url.
-  - `projectKey` specifies which project to refer to.
-    - This must be unique in the entire service.
-  - `uniqueKey` specifies a unique user.
-    - This must be unique in the specified project.
-  - `data` contains concrete data of the uniqueKey.
-    - This must be encoded url parameters.
-
-## OGP Generation and Response
+### OGP Generation and Response
 
 - Recieves Get OGP Request on a URL with UUID.
 - Selects the specified user's data based on the UUID acquired from requested URL.
